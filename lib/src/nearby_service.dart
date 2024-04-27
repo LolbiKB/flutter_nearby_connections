@@ -165,6 +165,18 @@ class NearbyService {
       'message': message,
     });
   }
+  // Sends a message encapsulated in a Data instance to nearby peers.
+  Future<void> sendMessage(String deviceID, Uint8List fileData) async {
+    // Convert file data to base64 encoding
+    String base64Data = base64Encode(fileData);
+  
+    // Send the message with file data
+    await _channel.invokeMethod(_sendMessage, <String, dynamic>{
+      'deviceId': deviceID,
+      if (_deviceName != null) 'senderDeviceId': _deviceName,
+      'fileData': base64Data,
+    });
+  }
 
   /// [stateChangedSubscription] helps you listen to the changes of peers with
   /// the circumstances: find a new peer, a peer is invited, a peer is disconnected,
