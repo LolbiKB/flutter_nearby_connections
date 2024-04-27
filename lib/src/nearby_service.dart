@@ -166,7 +166,7 @@ class NearbyService {
     });
   }
   // Sends a message encapsulated in a Data instance to nearby peers.
-  Future<void> sendMessage(String deviceID, Uint8List fileData) async {
+  Future<void> sendMessageUint(String deviceID, Uint8List fileData) async {
     // Convert file data to base64 encoding
     String base64Data = base64Encode(fileData);
   
